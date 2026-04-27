@@ -3,273 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Srinadh K | Java Full Stack Developer </title>
+    <title>Srinadh K | Java Full Stack Developer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --dark: #020617;
-            --slate: #0f172a;
+            --primary: #020617;
             --accent: #2563eb;
-            --white: #ffffff;
             --bg: #f1f5f9;
-            --text: #1e293b;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --text-bold: #0f172a;
+            --border: #e2e8f0;
         }
 
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; transition: all 0.2s ease; }
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             margin: 0;
             background: var(--bg);
-            color: var(--text);
+            color: var(--text-main);
             overflow-x: hidden;
         }
 
-        /* TOP NAVIGATION / HEADER */
         header {
-            background: var(--dark);
+            background: var(--primary);
             color: white;
-            padding: 40px 0;
+            padding: 60px 0;
             text-align: center;
-            border-bottom: 4px solid var(--accent);
+            border-bottom: 5px solid var(--accent);
+            background-image: radial-gradient(circle at 2px 2px, #1e293b 1px, transparent 0);
+            background-size: 32px 32px;
         }
-        header h1 { margin: 0; font-size: 2.5rem; letter-spacing: -1px; }
-        header p { color: var(--accent); font-weight: 700; text-transform: uppercase; margin: 10px 0; letter-spacing: 2px; }
-
-        .contact-strip {
+        header h1 { margin: 0; font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; }
+        header .subtitle { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-top: 10px; }
+        
+        .contact-bar {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
+            margin-top: 30px;
             flex-wrap: wrap;
-            margin-top: 20px;
         }
-        .contact-strip a {
+        .contact-bar a {
             color: #94a3b8;
             text-decoration: none;
+            padding: 10px 18px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50px;
             font-size: 0.9rem;
-            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .contact-strip a:hover { color: white; }
+        .contact-bar a:hover { background: var(--accent); color: white; border-color: var(--accent); transform: translateY(-3px); }
 
-        /* THE 50/50 SPLIT WINDOW LAYOUT */
-        .split-wrapper {
+        .dashboard-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* Exact same size windows */
+            grid-template-columns: 1fr 1fr;
             gap: 30px;
-            max-width: 1400px;
-            margin: 40px auto;
-            padding: 0 30px;
+            max-width: 1600px;
+            margin: -40px auto 60px;
+            padding: 0 40px;
         }
 
-        .window {
-            background: var(--white);
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            padding: 40px;
-            height: fit-content;
+        .panel {
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            padding: 45px;
+            border: 1px solid var(--border);
         }
 
-        .window-header {
-            border-bottom: 2px solid #f1f5f9;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
+        .panel-title {
             display: flex;
             align-items: center;
             gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--bg);
         }
-        .window-header h2 {
-            margin: 0;
-            font-size: 1.5rem;
-            color: var(--dark);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .window-header i { color: var(--accent); font-size: 1.5rem; }
+        .panel-title i { color: var(--accent); font-size: 1.8rem; }
+        .panel-title h2 { margin: 0; font-size: 1.5rem; color: var(--text-bold); text-transform: uppercase; letter-spacing: 1px; }
 
-        /* SUMMARY CONTENT (LEFT WINDOW) */
-        .summary-box { margin-bottom: 30px; }
-        .summary-box h3 { color: var(--accent); font-size: 1.1rem; margin-bottom: 10px; }
-        .summary-box p { font-size: 1rem; line-height: 1.8; color: #475569; margin-bottom: 20px; }
+        .summary-text { font-size: 0.95rem; line-height: 1.7; color: #475569; margin-bottom: 15px; }
+        .summary-text b { color: var(--text-bold); }
 
-        .skills-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .skill-category b { display: block; margin-bottom: 8px; font-size: 0.9rem; color: var(--dark); }
-        .skill-tag {
-            display: inline-block;
-            background: #eff6ff;
-            color: var(--accent);
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            margin: 2px;
-        }
+        .tech-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+        .tech-item h4 { margin: 0 0 8px 0; font-size: 0.8rem; color: var(--accent); text-transform: uppercase; border-left: 3px solid var(--accent); padding-left: 8px; }
+        .tags { display: flex; flex-wrap: wrap; gap: 5px; }
+        .tag { background: #f8fafc; color: var(--text-main); font-weight: 600; font-size: 0.75rem; padding: 3px 8px; border-radius: 4px; border: 1px solid #e2e8f0; }
 
-        /* EXPERIENCE CONTENT (RIGHT WINDOW) */
-        .job-card {
-            margin-bottom: 40px;
-            position: relative;
-            padding-left: 20px;
-            border-left: 3px solid #e2e8f0;
-        }
-        .job-card:hover { border-left-color: var(--accent); }
-        
-        .job-card h4 { margin: 0; font-size: 1.3rem; color: var(--dark); }
-        .job-card .company { color: var(--accent); font-weight: 700; display: block; margin-bottom: 5px; }
-        .job-card .meta { font-size: 0.85rem; color: #94a3b8; font-weight: 600; margin-bottom: 15px; display: block; }
+        .job { margin-bottom: 35px; position: relative; padding-left: 20px; border-left: 2px solid #e2e8f0; }
+        .job-head { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        .job-head h3 { margin: 0; font-size: 1.2rem; color: var(--text-bold); }
+        .job-head .client { color: var(--accent); font-weight: 800; font-size: 0.95rem; display: block; }
+        .job-head .date { font-size: 0.8rem; color: #94a3b8; font-weight: 700; }
 
-        .bullet-list { padding: 0; margin: 0; list-style: none; }
-        .bullet-list li {
-            font-size: 0.9rem;
-            color: #475569;
-            margin-bottom: 10px;
-            line-height: 1.6;
-            position: relative;
-            padding-left: 15px;
-        }
-        .bullet-list li::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 8px;
-            width: 6px;
-            height: 6px;
-            background: var(--accent);
-            border-radius: 50%;
-        }
+        .bullets { margin: 0; padding: 0; list-style: none; }
+        .bullets li { font-size: 0.88rem; line-height: 1.5; margin-bottom: 6px; position: relative; padding-left: 15px; color: #475569; }
+        .bullets li::before { content: "▹"; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
 
-        footer { text-align: center; padding: 60px 0; color: #94a3b8; font-size: 0.9rem; }
+        footer { text-align: center; padding: 40px; background: var(--primary); color: #94a3b8; }
 
-        @media (max-width: 1024px) {
-            .split-wrapper { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 1200px) { .dashboard-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
 <header>
     <h1>SRINADH K</h1>
-    <p>Senior Java Full Stack Developer</p>
-    <div class="contact-strip">
+    <div class="subtitle">Java Full Stack Developer | 9+ Years Experience</div>
+    <div class="contact-bar">
         <a href="mailto:kocherlasrinadh2@gmail.com"><i class="fas fa-envelope"></i> kocherlasrinadh2@gmail.com</a>
         <a href="tel:+19312979014"><i class="fas fa-phone"></i> +1 (931) 297-9014</a>
-        <a href="#"><i class="fas fa-map-marker-alt"></i> Dallas-Fort Worth, TX</a>
+        <a href="https://linkedin.com/in/kocherlasrinadh2" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
         <a href="https://github.com/kocherlasrinadh2-crypto" target="_blank"><i class="fab fa-github"></i> GitHub</a>
     </div>
 </header>
 
-<div class="split-wrapper">
+<div class="dashboard-grid">
     
-    <div class="window">
-        <div class="window-header">
-            <i class="fas fa-user-tie"></i>
+    <div class="panel">
+        <div class="panel-title">
+            <i class="fas fa-user-circle"></i>
             <h2>Professional Summary</h2>
         </div>
-        
-        <div class="summary-box">
-            <h3>Architectural Leadership</h3>
-            <p>Strategic <b>Senior Java Full Stack Developer</b> with over 9 years of experience in designing and delivering scalable, cloud-native applications. I specialize in building high-concurrency, low-latency systems for global enterprises like AT&T and Alaska Airlines.</p>
+        <div class="summary-text">
+            <b>9+ Years Career:</b> Accomplished <b>Java Full Stack Developer</b> specializing in <b>Spring Ecosystem</b> and scalable J2EE architectures. Proven expertise in building secure, cloud-native Microservices on <b>AWS</b> and <b>GCP</b>.
+        </div>
+        <div class="summary-text">
+            <b>Deep Technical Stack:</b> Proficient in <b>Java 21, Kotlin, and Go</b>, applying reactive programming (Spring WebFlux) for non-blocking APIs and <b>Kafka/RabbitMQ</b> for event-driven workflows.
+        </div>
+        <div class="summary-text">
+            <b>Frontend & Security:</b> Skilled in <b>React, Angular, and Redux</b> for responsive UI. Expert in <b>OWASP</b> security enforcement including OAuth2/JWT and TLS.
         </div>
 
-        <div class="summary-box">
-            <h3>Expertise & Impact</h3>
-            <p>Proven track record in <b>Event-Driven Microservices</b> using Apache Kafka and <b>Reactive Programming</b> with Spring WebFlux. I lead digital transformations that modernize legacy monolithic systems into resilient, distributed architectures on <b>AWS and GCP</b>.</p>
-            <p>Passionate about clean code (SOLID), performance optimization, and securing enterprise data using OWASP standards and advanced OAuth2/JWT authentication frameworks.</p>
-        </div>
-
-        <div class="window-header" style="margin-top: 40px;">
-            <i class="fas fa-bolt"></i>
+        <div class="panel-title" style="margin-top: 35px;">
+            <i class="fas fa-layer-group"></i>
             <h2>Technical Arsenal</h2>
         </div>
-        <div class="skills-grid">
-            <div class="skill-category">
-                <b>Languages</b>
-                <span class="skill-tag">Java 21</span>
-                <span class="skill-tag">Kotlin</span>
-                <span class="skill-tag">SQL</span>
+        <div class="tech-grid">
+            <div class="tech-item">
+                <h4>Languages</h4>
+                <div class="tags">
+                    <span class="tag">Java 21</span><span class="tag">Kotlin</span><span class="tag">Go</span><span class="tag">Rust</span><span class="tag">Python</span><span class="tag">SQL/PLSQL</span>
+                </div>
             </div>
-            <div class="skill-category">
-                <b>Backend</b>
-                <span class="skill-tag">Spring Boot 3</span>
-                <span class="skill-tag">WebFlux</span>
-                <span class="skill-tag">Kafka</span>
+            <div class="tech-item">
+                <h4>Frameworks</h4>
+                <div class="tags">
+                    <span class="tag">Spring Boot 3</span><span class="tag">Spring MVC</span><span class="tag">WebFlux</span><span class="tag">Hibernate</span><span class="tag">GraphQL</span><span class="tag">Apollo</span>
+                </div>
             </div>
-            <div class="skill-category">
-                <b>Frontend</b>
-                <span class="skill-tag">React.js</span>
-                <span class="skill-tag">Angular</span>
-                <span class="skill-tag">Redux</span>
+            <div class="tech-item">
+                <h4>Cloud & Messaging</h4>
+                <div class="tags">
+                    <span class="tag">AWS (EKS/S3)</span><span class="tag">GCP (GKE)</span><span class="tag">Kafka</span><span class="tag">RabbitMQ</span><span class="tag">Terraform</span><span class="tag">Docker/K8s</span>
+                </div>
             </div>
-            <div class="skill-category">
-                <b>Cloud/Ops</b>
-                <span class="skill-tag">AWS (EKS)</span>
-                <span class="skill-tag">GCP (GKE)</span>
-                <span class="skill-tag">Docker/K8s</span>
+            <div class="tech-item">
+                <h4>Frontend</h4>
+                <div class="tags">
+                    <span class="tag">ReactJS</span><span class="tag">Angular</span><span class="tag">Redux/NgRx</span><span class="tag">Material UI</span><span class="tag">Vite</span><span class="tag">SASS</span>
+                </div>
+            </div>
+            <div class="tech-item">
+                <h4>Databases</h4>
+                <div class="tags">
+                    <span class="tag">PostgreSQL</span><span class="tag">MongoDB</span><span class="tag">DynamoDB</span><span class="tag">Oracle</span><span class="tag">Cassandra</span><span class="tag">Redis</span>
+                </div>
+            </div>
+            <div class="tech-item">
+                <h4>Tools & CI/CD</h4>
+                <div class="tags">
+                    <span class="tag">Jenkins</span><span class="tag">GitHub Actions</span><span class="tag">ArgoCD</span><span class="tag">IntelliJ</span><span class="tag">JUnit</span><span class="tag">Maven</span>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="window">
-        <div class="window-header">
-            <i class="fas fa-history"></i>
+    <div class="panel">
+        <div class="panel-title">
+            <i class="fas fa-briefcase"></i>
             <h2>Professional Experience</h2>
         </div>
 
-        <div class="job-card">
-            <span class="company">AT&T</span>
-            <h4>Senior Java Full Stack Developer</h4>
-            <span class="meta">Nov 2025 – Present | Dallas, TX</span>
-            <ul class="bullet-list">
-                <li>Architecting high-availability microservices using <b>Java 21</b> and Spring Boot 3.2 for telecom data systems.</li>
-                <li>Scaling event-driven messaging pipelines using <b>Apache Kafka</b> to handle millions of transactions per hour.</li>
-                <li>Optimizing non-blocking API endpoints with <b>Spring WebFlux</b>, resulting in a 30% reduction in CPU overhead.</li>
-                <li>Managing EKS clusters on AWS using <b>Terraform</b> and Helm for automated infrastructure deployment.</li>
+        <div class="job">
+            <div class="job-head">
+                <div><span class="client">AT&T</span><h3>Java Full Stack Developer</h3></div>
+                <div class="date">2025 – Present</div>
+            </div>
+            <ul class="bullets">
+                <li>Developed scalable backend microservices using <b>Java 21</b>, Streams, and Multithreading.</li>
+                <li>Integrated <b>Kotlin-based services</b> with Spring Boot and Spring WebFlux.</li>
+                <li>Implemented event-driven architecture using <b>Apache Kafka</b> (DLT, partitions, offsets).</li>
+                <li>Orchestrated deployments with <b>Kubernetes (EKS)</b> including rolling updates and auto-scaling.</li>
+                <li>Secured APIs via <b>OAuth 2.0 / OpenID Connect</b> and Spring Security.</li>
             </ul>
         </div>
 
-        <div class="job-card">
-            <span class="company">County of Santa Clara</span>
-            <h4>Java Full Stack Developer</h4>
-            <span class="meta">May 2024 – Oct 2025 | Santa Clara, CA</span>
-            <ul class="bullet-list">
-                <li>Migrated legacy government portals to <b>GCP (Google Cloud Platform)</b> using GKE and Cloud SQL.</li>
-                <li>Developed modular backend features in <b>Kotlin (Ktor)</b> to ensure null-safety and rapid feature delivery.</li>
-                <li>Designed real-time data sync services using <b>GCP Pub/Sub</b> and Kafka for state-wide data consistency.</li>
-                <li>Automated testing and deployment using <b>GitHub Actions</b>, increasing release frequency by 40%.</li>
+        <div class="job">
+            <div class="job-head">
+                <div><span class="client">County of Santa Clara</span><h3>Java Full Stack Developer</h3></div>
+                <div class="date">2024 – 2025</div>
+            </div>
+            <ul class="bullets">
+                <li>Modernized services on <b>GCP (GKE)</b> and Red Hat OpenShift.</li>
+                <li>Designed cloud-native microservices using <b>Kotlin (Ktor)</b> and Spring Boot.</li>
+                <li>Built event-driven logic with <b>GCP Pub/Sub</b> and Couchbase.</li>
+                <li>Developed automated <b>SFTP</b> file transfer solutions using Spring Integration.</li>
+                <li>Used <b>Golang (GORM)</b> and Node.js for database operations in multi-service environments.</li>
             </ul>
         </div>
 
-        <div class="job-card">
-            <span class="company">Alaska Airlines</span>
-            <h4>Software Engineer</h4>
-            <span class="meta">Aug 2023 – April 2024 | Seattle, WA</span>
-            <ul class="bullet-list">
-                <li>Built passenger-facing booking modules using <b>React.js</b> and Spring Boot, optimizing for low-latency search.</li>
-                <li>Integrated <b>AWS Lambda</b> serverless functions for real-time flight notification triggers via SQS/SNS.</li>
-                <li>Modernized CI/CD processes by transitioning from legacy build tools to <b>Maven</b> and Git-based workflows.</li>
+        <div class="job">
+            <div class="job-head">
+                <div><span class="client">Alaska Airlines</span><h3>Software Engineer</h3></div>
+                <div class="date">2023 – 2024</div>
+            </div>
+            <ul class="bullets">
+                <li>Built pixel-perfect UI components in <b>React.js</b> and <b>AngularJS</b>.</li>
+                <li>Engineered high-performance middleware and APIs in <b>Golang</b>.</li>
+                <li>Processed real-time data using <b>Apache Spark</b> and Scala.</li>
+                <li>Deployed serverless APIs via <b>AWS Lambda</b> for event-driven travel workflows.</li>
+                <li>Executed data center migration to AWS using <b>Snowball</b> and CloudFormation.</li>
             </ul>
         </div>
 
-        <div class="job-card" style="margin-bottom: 0;">
-            <span class="company">Capco</span>
-            <h4>Java/J2EE Developer</h4>
-            <span class="meta">Aug 2017 – May 2023 | Bangalore, India</span>
-            <ul class="bullet-list">
-                <li>Engineered core banking microservices for Tier-1 financial clients using Spring Boot and Oracle DB.</li>
-                <li>Led the migration of 50+ legacy JSP pages to <b>Angular 10</b>, enhancing frontend maintainability.</li>
-                <li>Collaborated on <b>OAuth2/JWT</b> implementations to secure sensitive financial transaction APIs.</li>
+        <div class="job" style="border:none; margin-bottom:0;">
+            <div class="job-head">
+                <div><span class="client">Capco</span><h3>Java/J2EE Developer</h3></div>
+                <div class="date">2017 – 2023</div>
+            </div>
+            <ul class="bullets">
+                <li>Built fintech solutions using <b>Spring Boot</b>, Hibernate, and <b>Angular 10</b>.</li>
+                <li>Provisioned <b>AWS infrastructure</b> using Terraform (EC2, S3, RDS).</li>
+                <li>Integrated <b>Drools Rule Engine</b> for automated banking business logic.</li>
+                <li>Managed controlled schema migrations using <b>Flyway and Liquibase</b>.</li>
             </ul>
         </div>
-
     </div>
 </div>
 
 <footer>
-    <p>&copy; 2026 Srinadh K | Java Full Stack Developer | Built with Passion & Precision</p>
+    <p>&copy; 2026 Srinadh K | Java Full Stack Developer</p>
 </footer>
 
 </body>
